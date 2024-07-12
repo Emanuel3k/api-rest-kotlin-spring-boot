@@ -1,4 +1,4 @@
-package com.emanuel3k.forum.services
+package com.emanuel3k.forum.services.topico
 
 import com.emanuel3k.forum.models.Curso
 import com.emanuel3k.forum.models.Topico
