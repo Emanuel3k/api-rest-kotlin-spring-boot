@@ -1,6 +1,6 @@
 package com.emanuel3k.forum.controllers.topico.resposta
 
-import com.emanuel3k.forum.models.Resposta
+import com.emanuel3k.forum.domain.models.Resposta
 import com.emanuel3k.forum.services.topico.resposta.RespostaService
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable

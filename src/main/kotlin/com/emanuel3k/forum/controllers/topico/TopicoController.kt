@@ -1,11 +1,9 @@
 package com.emanuel3k.forum.controllers.topico
 
-import com.emanuel3k.forum.models.Topico
+import com.emanuel3k.forum.domain.dto.NovoTopicoDTO
+import com.emanuel3k.forum.domain.models.Topico
 import com.emanuel3k.forum.services.topico.TopicoService
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/topicos")
@@ -16,6 +14,11 @@ class TopicoController(
     @GetMapping
     fun listar(): List<Topico> {
         return service.listar()
+    }
+
+    @PostMapping
+    fun cadastrar(@RequestBody dto: NovoTopicoDTO) {
+        service.cadastrar(dto)
     }
 
     @GetMapping("/{id}")

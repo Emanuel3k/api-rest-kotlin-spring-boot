@@ -1,9 +1,9 @@
 package com.emanuel3k.forum.services.topico.resposta
 
-import com.emanuel3k.forum.models.Curso
-import com.emanuel3k.forum.models.Resposta
-import com.emanuel3k.forum.models.Topico
-import com.emanuel3k.forum.models.Usuario
+import com.emanuel3k.forum.domain.models.Curso
+import com.emanuel3k.forum.domain.models.Resposta
+import com.emanuel3k.forum.domain.models.Topico
+import com.emanuel3k.forum.domain.models.Usuario
 import org.springframework.stereotype.Service
 
 @Service

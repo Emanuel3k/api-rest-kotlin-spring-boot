@@ -1,4 +1,4 @@
-package com.emanuel3k.forum.models
+package com.emanuel3k.forum.domain.models
 
 enum class StatusTopico {
     NAO_RESPONDIDO,

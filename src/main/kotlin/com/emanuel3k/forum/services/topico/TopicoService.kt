@@ -1,67 +1,33 @@
 package com.emanuel3k.forum.services.topico
 
-import com.emanuel3k.forum.models.Curso
-import com.emanuel3k.forum.models.Topico
-import com.emanuel3k.forum.models.Usuario
+import com.emanuel3k.forum.domain.dto.NovoTopicoDTO
+import com.emanuel3k.forum.domain.models.Topico
+import com.emanuel3k.forum.services.autor.UsuarioService
+import com.emanuel3k.forum.services.curso.CursoService
 import org.springframework.stereotype.Service
 
 @Service
 class TopicoService(
-    private var topicos: List<Topico>
+    private val cursoService: CursoService,
+    private val usuarioService: UsuarioService,
+    private val topicos: MutableList<Topico> = ArrayList(),
 ) {
-
-    init {
-        val topico1 = Topico(
-            id = 1,
-            titulo = "Duvida Kotlin",
-            mensagem = "Variaveis do kotlin",
-            curso = Curso(
-                id = 1,
-                nome = "Kotlin",
-                categoria = "Programacao",
-            ),
-            autor = Usuario(
-                id = 1,
-                nome = "Ana Silva",
-                email = "ana@email.com"
-            ),
-        )
-        val topico2 = Topico(
-            id = 2,
-            titulo = "Duvida Kotlin",
-            mensagem = "Variaveis do kotlin",
-            curso = Curso(
-                id = 2,
-                nome = "Kotlin",
-                categoria = "Programacao",
-            ),
-            autor = Usuario(
-                id = 2,
-                nome = "Ana Silva",
-                email = "ana@email.com"
-            ),
-        )
-        val topico3 = Topico(
-            id = 3,
-            titulo = "Duvida Kotlin",
-            mensagem = "Variaveis do kotlin",
-            curso = Curso(
-                id = 3,
-                nome = "Kotlin",
-                categoria = "Programacao",
-            ),
-            autor = Usuario(
-                id = 3,
-                nome = "Ana Silva",
-                email = "ana@email.com"
-            ),
-        )
-
-        topicos = listOf(topico1, topico2, topico3)
-    }
 
     fun listar(): List<Topico> {
         return topicos
+    }
+
+    fun cadastrar(dto: NovoTopicoDTO) {
+
+        topicos.add(
+            Topico(
+                id = topicos.size.toLong() + 1,
+                titulo = dto.titulo,
+                mensagem = dto.mensagem,
+                curso = cursoService.buscarPorId(dto.idCurso),
+                autor = usuarioService.buscarPorId(dto.idAutor)
+            )
+        )
     }
 
     fun buscarPorId(id: Long): Topico? {
@@ -69,4 +35,5 @@ class TopicoService(
             topico.id == id
         }
     }
+
 }

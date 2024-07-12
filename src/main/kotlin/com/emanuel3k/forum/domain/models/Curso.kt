@@ -1,4 +1,4 @@
-package com.emanuel3k.forum.models
+package com.emanuel3k.forum.domain.models
 
 data class Curso(
     val id: Long? = null,
