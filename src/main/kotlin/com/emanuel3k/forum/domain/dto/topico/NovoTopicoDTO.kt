@@ -1,6 +1,6 @@
-package com.emanuel3k.forum.domain.dto
+package com.emanuel3k.forum.domain.dto.topico
 
-data class NovoTopicoDTO(
+data class NovoTopicoForm(
     val titulo: String,
     val mensagem: String,
     val idCurso: Long,

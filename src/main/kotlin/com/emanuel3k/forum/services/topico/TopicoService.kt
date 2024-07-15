@@ -1,6 +1,7 @@
 package com.emanuel3k.forum.services.topico
 
-import com.emanuel3k.forum.domain.dto.NovoTopicoDTO
+import com.emanuel3k.forum.domain.dto.topico.NovoTopicoForm
+import com.emanuel3k.forum.domain.dto.topico.TopicoView
 import com.emanuel3k.forum.domain.models.Topico
 import com.emanuel3k.forum.services.autor.UsuarioService
 import com.emanuel3k.forum.services.curso.CursoService
@@ -13,12 +14,19 @@ class TopicoService(
     private val topicos: MutableList<Topico> = ArrayList(),
 ) {
 
-    fun listar(): List<Topico> {
-        return topicos
+    fun listar(): List<TopicoView> {
+        return topicos.map { topico ->
+            TopicoView(
+                id = topico.id,
+                titulo = topico.titulo,
+                mensagem = topico.mensagem,
+                dataCriacao = topico.dataCriacao,
+                status = topico.status,
+            )
+        }
     }
 
-    fun cadastrar(dto: NovoTopicoDTO) {
-
+    fun cadastrar(dto: NovoTopicoForm) {
         topicos.add(
             Topico(
                 id = topicos.size.toLong() + 1,
@@ -30,10 +38,17 @@ class TopicoService(
         )
     }
 
-    fun buscarPorId(id: Long): Topico? {
+    fun buscarPorId(id: Long): TopicoView? {
         return topicos.find { topico ->
             topico.id == id
+        }?.let { topico ->
+            TopicoView(
+                id = topico.id,
+                titulo = topico.titulo,
+                mensagem = topico.mensagem,
+                dataCriacao = topico.dataCriacao,
+                status = topico.status,
+            )
         }
     }
-
 }
